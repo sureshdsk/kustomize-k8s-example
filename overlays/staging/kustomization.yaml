@@ -1,0 +1,9 @@
+namePrefix: staging-
+commonLabels:
+  env: staging
+bases:
+  - ../../base
+patchesStrategicMerge:
+  - configmap-patch.yaml
+  - secret-patch.yaml
+  - deployment-patch.yaml

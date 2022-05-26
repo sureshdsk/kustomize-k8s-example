@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+  labels:
+    app: django-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-app
+  template:
+    metadata:
+      labels:
+        app: django-app
+    spec:
+      containers:
+        - name: django-app
+          image: kubernetes-django:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DJANGO_AUTH_PUBLIC_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: django-configmap
+                  key: DJANGO_AUTH_PUBLIC_URI
+            - name: DJANGO_DB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: django-secret
+                  key: DJANGO_DB_URI

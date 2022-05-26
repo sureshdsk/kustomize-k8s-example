@@ -1,0 +1,9 @@
+namePrefix: production-
+commonLabels:
+  env: production
+bases:
+  - ../../base
+patchesStrategicMerge:
+  - configmap-patch.yaml
+  - secret-patch.yaml
+  - deployment-patch.yaml

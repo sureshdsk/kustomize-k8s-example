@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-configmap
+data:
+  DJANGO_AUTH_PUBLIC_URI: "http://staging.192.168.0.139.sslip.io"
+  DEBUG: "False"
